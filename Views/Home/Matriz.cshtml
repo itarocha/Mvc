@@ -1,0 +1,27 @@
+﻿@model Mvc.Model.MatrizVO
+<h2>Editar Matriz</h2>
+<div>modalidadeId = @ViewData["modalidadeId"]</div>
+<div>etapaId = @ViewData["etapaId"]</div>
+<div>id = @Model.Id</div>
+@using(Html.BeginForm())
+{
+	<ul>
+		<input type='hidden' name='ModalidadeId' value='@Model.ModalidadeId'/>
+		<input type="hidden" name='EtapaId' value="@Model.EtapaId"/>
+		<input type="hidden" name='Id' value="@Model.Id"/>
+	</ul>
+	<input type="submit" name="submit" value="Gravar"/>
+}
+
+<p>
+<b>Discs</b>
+</p>
+<ul>
+<li>Dark Side of The Moon <a href="/MatrizDisciplina/@Model.Id/4">Editar</a></li>
+<li>The Division Bell <a href="/MatrizDisciplina/@Model.Id/28">Editar</a></li>
+<li>The Wall <a href="/MatrizDisciplina/@Model.Id/32">Editar</a></li>
+<li>Animals <a href="/MatrizDisciplina/@Model.Id/68">Editar</a></li>
+</ul>
+@if(Model.Id > 0){
+	<a href="/MatrizDisciplina/@Model.Id">Add Disc</a>	
+}

@@ -1,0 +1,11 @@
+D:\pessoal\itamar\mvc\Mvc\obj\Debug\Mvc.csprojResolveAssemblyReference.cache
+D:\pessoal\itamar\mvc\Mvc\bin\Mvc.dll
+D:\pessoal\itamar\mvc\Mvc\bin\Mvc.pdb
+D:\pessoal\itamar\mvc\Mvc\obj\Debug\Mvc.dll
+D:\pessoal\itamar\mvc\Mvc\obj\Debug\Mvc.pdb
+D:\pessoal\itamar\mvc\Mvc\bin\FluentNHibernate.dll
+D:\pessoal\itamar\mvc\Mvc\bin\Iesi.Collections.dll
+D:\pessoal\itamar\mvc\Mvc\bin\NHibernate.dll
+D:\pessoal\itamar\mvc\Mvc\bin\FluentNHibernate.xml
+D:\pessoal\itamar\mvc\Mvc\bin\Iesi.Collections.xml
+D:\pessoal\itamar\mvc\Mvc\bin\NHibernate.xml

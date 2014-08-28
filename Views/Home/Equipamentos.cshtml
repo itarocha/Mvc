@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Mvc.Model.Equipamento>
+@{
+  var index = 0;
+}
+
+@using (Html.BeginForm())
+{
+	<ul>
+	
+	@foreach(Mvc.Model.Equipamento item in Model){
+		<li>
+		@item.Descricao
+		<input type="hidden" name="lista[@index].Id" value="@item.Id"/>
+		<input type="hidden" name="lista[@index].Descricao" value="@item.Descricao" />
+		<input type="text" name="lista[@index].Quantidade" value="@item.Quantidade" class="xis"/>
+		</li>
+		index++;
+	}
+	</ul>
+	<select id="opt2" disabled></select>
+	<div id="lista"></div>
+	<input type="submit" name="submit" />
+}
+<script>
+$(function() {
+  $('.xis').change(function(){
+  
+  	//$("#IdList").val()
+	var valor = $(this).val();
+  
+	$.getJSON("/Home/GetFooList", { FooId: valor },
+       function(fooList) {
+           var options = '';
+           $("#lista").empty();
+           $.each(fooList, function(i, foo) {
+               $("#lista").append("<p>"+ foo.Name+ "</p>");
+               
+               options += "<option value='" + foo.FooId + "'>"
+                  +  foo.Name + "</option>";
+           });
+           $('select#opt2').removeAttr('disabled').html(options);
+       });  
+  });
+});
+</script>

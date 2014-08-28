@@ -1,0 +1,56 @@
+﻿@{
+	ViewBag.Title = "Selecionar Matriz";
+	IEnumerable<String> lista = (IEnumerable<String>)ViewBag.Cabecalho;
+}
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>MatrizSelecionar</title>
+	</head>
+	<body>
+		<h2>Selecionar Matriz</h2>
+		<p>Alfa <a href="/Matriz/5/7">Editar</a>&nbsp;<a href="/MatrizDisciplina/1230">Disc</a></p>
+		<p>Beta <a href="/Matriz/2/4">Editar</a>&nbsp;<a href="/MatrizDisciplina/4425">Disc</a></p>
+		<p>Gamma <a href="/Matriz/4/2">Editar</a>&nbsp;<a href="/MatrizDisciplina/1279">Disc</a></p>
+		<p>Delta <a href="/Matriz/8/1">Editar</a>&nbsp;<a href="/MatrizDisciplina/3376">Disc</a></p>
+		</br>
+		<p><a href="#" class="magia" data-id="5" data-coluna="12" data-texto="Algum texto livre">Clique Aqui</a></p>
+		
+		
+	<ul>
+	@foreach(var item in lista){
+		<li>@item</li>
+	}
+	</ul>
+		
+		
+		
+	</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //gladiatorApp.initArticleModal();
+
+		$(".magia").on("click", function () {
+			var articleId = $(this).data('id');
+		    var coluna = $(this).data('coluna');
+		    var texto = $(this).data('texto');
+		    alert("O Id é \'"+articleId+"\' Coluna = \'"+coluna+"\'. Texto: \'"+texto+"\'");
+		    /*
+		        $.ajax({
+		            url: "/article/get/" + articleId,
+		            cache: false
+		        }).done(function (data) {
+		            $("#Title").val(data.Title);
+		            $("#Summary").val(data.Summary);
+		            $("#Magazine").val(data.Magazine);
+		            $("#Url").val(data.Url);
+		            $("#PubMonth").val(data.Year.toString() + "-" + 
+		                               ("00"+data.Month.toString()).slice(-2));
+		        });
+		        */
+		    });
+	});
+</script>

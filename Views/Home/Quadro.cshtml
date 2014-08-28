@@ -1,0 +1,246 @@
+﻿@model Mvc.Model.Quadro
+
+@{
+	ViewBag.Title = "Quadro";
+	//IEnumerable<Mvc.Model.Item> lista = (IEnumerable<Mvc.Model.Item>)ViewData["ListaItens"];
+	String situacaoItem = "";
+	Mvc.Model.Quadro quadro = (Mvc.Model.Quadro)ViewBag.Quadro;
+  	var index = 0;
+  	string nome = "";
+  	string classe = "";
+}
+
+<style>
+	ul, li {
+	    padding:0;
+	    margin:0;
+	    margin-top:-1px;
+	    list-style:none;
+	}
+	
+	li p{
+		width: 80px;	
+	}
+	
+	.fila-ul { 
+        width:100%;
+        /*height:100px;*/
+        float:left;
+        display:table;
+	}
+	
+	.a100{
+		height:100px;
+	}
+	
+	.a50{
+		height:50px;
+	}
+	
+	.coluna-li { 
+	    display:table-cell;
+	    border:solid 1px #808080;
+	    cursor:pointer;
+	    position:relative;
+	    overflow:hidden;
+	    transition:all ease 0.35s;
+	}
+	.input-check { 
+        display:block;
+        opacity:.0;
+        padding:0;
+        margin:0;
+        height:1px;
+	}
+	.ocupado { 
+        background:#ddd;
+	}
+	.check { 
+        background:#b6ff00; 
+	}
+</style>
+
+<script type="text/javascript">
+    $(function() {
+    
+    	$('#senhaout').text(password(64,false));
+
+        var linhas = "@ViewBag.Linhas";
+        var colunas = "@ViewBag.Colunas";
+        //var linhas = 5;
+        //var colunas = 8;
+
+        //alert(linhas+", "+colunas);
+
+        var charCode = 65;
+        var letra = "";
+
+        var ful = $("<ul class=fila-ul>");
+        var fli = $("<li class=coluna-li><input type=checkbox><p/><li/>");
+        var n = 0;
+ 
+		/* SE FOSSE PRA FAZER SOMENTE COM JQUERY
+        for (var l = 1; l <= linhas; l++) {
+            letra = String.fromCharCode(charCode++);
+            var ul = ful.clone().appendTo("div#area");
+            for (var c = 1; c <= colunas; c++) {
+                var li = fli.clone().appendTo(ul)
+                li.data("title", n++ % 3 == 0 ? "ocupado" : "livre");
+                li.find(":input").addClass("input-check").addClass("teste");
+                @{
+                    String texto = "teste"; //@ViewBag.Cabecalho[@c-1];
+                }
+                if (l == 1) {
+                	li.children().filter("p").text("xxxx").css("text-align", "center");
+                } else {
+                	li.children().filter("p").text(letra + "-" + c).css("text-align", "center");
+                }
+            }
+        }
+        */
+
+        // Função que desabilita o botão para assentos ocupadas
+        $('.coluna-li').each(function () {
+            if ($(this).data('title') == 'ocupado') {
+                $(this).addClass('ocupado');
+                $(this).find('.input-check').prop('disabled', true).prop('checked', false);
+            };
+        });
+
+        // Função que permite selecionar um assento livre e alterar a cor
+        $('.coluna-li').click(function () {
+            if ($(this).data('title') != 'ocupado') {
+                $(this).toggleClass('check');
+                var e = $(this).find('.input-check');
+                e.prop('checked', !e.prop('checked') );
+            }
+        });
+        
+		/*
+        $('.celula').each(function () {
+            if ($(this).data("pode") == false) {
+                $(this).css({
+                    "background": "#888"
+                });
+            }
+        });
+
+        $('.celula').click(function () {
+            if ($(this).data("pode") != false) {
+                if ($(this).data("dono") == null) {
+                    $(this).css({
+                        "background": "blue"
+                    });
+                    $(this).data("dono", "sim");
+                } else {
+                    $(this).css({
+                        "background": "yellow"
+                    });
+                    $(this).removeData("dono");
+                }
+            }
+
+        });
+        */
+        /*
+        $('.celula').mouseleave(function(){
+            $(this).css({
+                "background": "yellow"
+            });
+        });
+        */
+        
+        
+		function password(length, special) {
+		  var iteration = 0;
+		  var password = "";
+		  var randomNumber;
+		  if(special == undefined){
+		      var special = false;
+		  }
+		  while(iteration < length){
+		    randomNumber = (Math.floor((Math.random() * 100)) % 94) + 33;
+		    if(!special){
+		      if ((randomNumber >=33) && (randomNumber <=47)) { continue; }
+		      if ((randomNumber >=58) && (randomNumber <=64)) { continue; }
+		      if ((randomNumber >=91) && (randomNumber <=96)) { continue; }
+		      if ((randomNumber >=123) && (randomNumber <=126)) { continue; }
+		    }
+		    iteration++;
+		    password += String.fromCharCode(randomNumber);
+		  }
+		  return password;
+		}
+		
+ });
+</script>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false)
+
+
+	<div class="row">
+		<div class="col-md-6">
+	    	<label class="input-label f-left">Disciputatum:</label>
+	        <h4><div id="senhaout"></div></h4>
+		</div>
+	    <div class="col-md-6">
+	    	<label class="input-label f-left">Prosputrefum:</label>
+	        <h4>SELECIONAR</h4>
+		</div>
+	</div>
+
+	<div id="area"></div>
+	
+	<div id="grade">
+		@for(int l = -1; l <= quadro.Faixas.Count-1; l++ ){
+			if(l==-1){
+				classe="a50";	
+			} else {
+				classe="a100";
+			}
+			<ul class="fila-ul @classe">
+			@for(int c = -1; c <= quadro.Colunas.Count -1; c++ ){
+				if (l==-1 && c>=0){
+				<li class="coluna-li" data-title="ocupado"><p style="font-weight:bold; text-align:center;">@quadro.Colunas[c].Descricao</p></li>
+				} else if (l >-1 && c==-1){
+				<li class="coluna-li" data-title="ocupado"><p style="font-weight:bold; text-align:center; vertical-align:middle;">@quadro.Faixas[l]</p></li>
+				} else if (l==-1 && c==-1){
+				<li class="coluna-li" data-title="ocupado"><p>&nbsp;</p></li>
+				} else {
+					index++;
+					Mvc.Model.Coluna coluna = quadro.Colunas[c];
+					string titulo = coluna.Selecionavel ? "" : "ocupado";
+					string check = ""; //coluna.Selecionavel ? "check" : "";
+					string checado = ""; // checked
+				
+					nome = "";
+					foreach(Mvc.Model.Celula cel in quadro.Celulas){ 
+						if((cel.CabecalhoId == c) && (cel.HorarioId == l)){ 
+							nome = cel.Nome;	
+						}
+					}
+		        	<li class="coluna-li @check" data-title="@titulo">
+		        		<input type=checkbox class="input-check" name="horarios" value="@index" @checado>
+		        		<p>@nome</p>
+		        	</li>
+				}
+			}
+			</ul>
+			}
+			<input type="hidden" name="PessoaId" value="30"/>
+	</div>
+
+    <div class="col-md-12 pt-20">
+        @Html.ActionLink("Voltar", "Equipamentos", "Home", null, new { @class="btn btn-default" })
+        <input type="submit" value="Gravar" class="btn btn-success" />
+    </div>
+
+    <!--
+    _Html.HiddenFor(model => model.Id)
+    _Html.HiddenFor(model => model.EscolaId)
+    -->
+}
+
+

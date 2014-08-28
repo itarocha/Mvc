@@ -1,0 +1,33 @@
+﻿@model Mvc.Model.Pessoa
+@{
+	ViewBag.Title = "Home";
+	IEnumerable<Mvc.Model.Item> lista = (IEnumerable<Mvc.Model.Item>)ViewData["ListaItens"];
+	String situacaoItem = "";
+}
+
+<h2>@ViewData["Escolhidos"]</h2>
+
+@using (Html.BeginForm())
+{
+	@Html.HiddenFor(model => model.Nome)
+	<ul>
+	@foreach(Mvc.Model.Item item in lista){
+		situacaoItem = "";
+		foreach(int cli in Model.Lista){
+			if (item.Id == cli) {
+				situacaoItem = "checked";
+				break;
+			}
+		}
+		<li><input type="checkbox" name="Lista" value="@item.Id" @situacaoItem />@item.Descricao</li>
+	}
+	</ul>
+	<ul style="list-style-type:none; padding:0;">
+	<li style="display:inline;"><input type="checkbox" name="ckbdom" value="S" checked />Dom</li>
+	<li style="display:inline;"><input type="checkbox" name="ckbseg" value="S" />Seg</li>
+	<li style="display:inline;"><input type="checkbox" name="ckbter" value="S" checked />Ter</li>
+	<li style="display:inline;"><input type="checkbox" name="ckbqua" value="S" checked />Qua</li>
+	</ul>
+
+	<input type="submit" name="submit" />
+}

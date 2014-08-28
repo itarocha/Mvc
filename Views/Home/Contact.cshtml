@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Mvc.Model.Item>
+
+@{
+	ViewBag.Title = "Contact";
+	IEnumerable<Mvc.Model.Item> lista = (IEnumerable<Mvc.Model.Item>)ViewData["ListaItens"];
+	String situacaoItem = "";
+}
+
+
+@using (Html.BeginForm())
+{
+	<ul>
+	@foreach(Mvc.Model.Item item in lista){
+		situacaoItem = "";
+		foreach(Mvc.Model.Item cli in Model){
+			if (item.Id == cli.Id) {
+				situacaoItem = "checked";
+				break;
+			}
+		}
+		<li><input type="checkbox" name="lista" value="@item.Id" @situacaoItem />@item.Descricao</li>
+	}
+	</ul>
+	
+	<input type="submit" name="submit" />
+}

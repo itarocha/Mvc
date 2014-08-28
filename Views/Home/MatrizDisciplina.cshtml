@@ -1,0 +1,11 @@
+﻿@model Mvc.Model.MatrizDisciplinaVO
+<h2>@ViewBag.Title</h2>
+@using(Html.BeginForm())
+{
+	<ul>
+		<input type='hidden' name='Id' value='@Model.Id'/>
+		<input type='hidden' name='MatrizId' value='@Model.MatrizId'/>
+		<input type="hidden" name='DisciplinaId' value="@Model.DisciplinaId"/>
+	</ul>
+	<input type="submit" name="submit" value="Gravar"/>
+}

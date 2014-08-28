@@ -1,0 +1,98 @@
+﻿
+<!--
+
+<!DOCTYPE html>
+<html>
+<head>
+    ...
+    _Styles.Render("~/Content/themes/base/jquery.ui.all.css")
+    _Styles.Render("~/Content/themes/base/jquery.ui.dialog.css")
+    ...
+</head>
+<body>
+    ...
+    _Scripts.Render("~/bundles/jquery")
+    _Scripts.Render("~/bundles/jqueryui")
+    _Scripts.Render("~/bundles/jqueryval")
+    ...
+</body>
+</html>
+-->
+
+
+@{
+	ViewBag.Title = "Tabela Dinâmica";
+	IEnumerable<String> lista = (IEnumerable<String>)ViewBag.Cabecalho;
+	Mvc.Model.Quadro quadro = ( Mvc.Model.Quadro)ViewBag.Quadro;
+	string nome = "";
+}
+<style>
+	.item{
+		padding:0;
+		margin:0;
+		width:100px;
+		height:50px;
+		background:#ccc;
+	}
+	.amarelo{
+		background:yellow;
+	}
+    #container .modal-body {
+        max-height: 50px;
+    }
+    #article-editor {
+	    width: 600px;
+	    margin-left: -300px;
+	    margin-right: -300px;
+	}
+</style>
+
+<h2>Selecionar Matriz</h2>
+@using (Html.BeginForm("horarios", "editor", FormMethod.Post, new { id="articleForm" }))
+{
+	<p><a href="#" class="magia" data-id="5" data-coluna="12" data-texto="Algum texto livre">Clique Aqui</a></p>
+	<table border="1">
+		@for(int l = -1; l <= quadro.Horarios.Count-1; l++ ){
+		<tr>
+		@for(int c = -1; c <= quadro.Cabecalho.Count -1; c++ ){
+			if (l==-1 && c>=0){
+			<td>@quadro.Cabecalho[c]</td>
+			} else if (l >-1 && c==-1){
+			<td>@quadro.Horarios[l]</td>
+			} else if (l==-1 && c==-1){
+			<td>&nbsp;</td>
+			} else {
+				nome = "";
+				foreach(Mvc.Model.Celula cel in quadro.Celulas){ 
+					if((cel.CabecalhoId == c) && (cel.HorarioId == l)){ 
+						nome = cel.Nome;	
+					}
+				}
+				<td><p class="item clique" data-l="@l" data-c="@c">@l,@c : @nome</p></td>
+			}
+		}
+		</tr>
+		}
+	</table>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //gladiatorApp.initArticleModal();
+
+		$(".clique").on("click", function () {
+			var lin = $(this).data('l');
+			var col = $(this).data('c');
+			
+			$(this) .toggleClass("amarelo");
+
+			//alert("O lin=\'"+lin+"\' col=\'"+col+"\'");
+
+			var articleId = $(this).data('id');
+		    var coluna = $(this).data('coluna');
+		    var texto = $(this).data('texto');
+		});
+			
+	});
+</script>

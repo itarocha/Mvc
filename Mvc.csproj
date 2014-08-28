@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{E66DEDBD-9DAC-44DB-AB0F-749FCDD28294}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Mvc</RootNamespace>
+    <AssemblyName>Mvc</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <UseIISExpress>True</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NHibernate">
+      <HintPath>packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Core" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Library\Validadores.cs" />
+    <Compile Include="Model\TheCalendario.cs" />
+    <Compile Include="Model\Equipamento.cs" />
+    <Compile Include="Model\Infra.cs" />
+    <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\MatrizDisciplinaVO.cs" />
+    <Compile Include="Model\MatrizVO.cs" />
+    <Compile Include="Model\Pessoa.cs" />
+    <Compile Include="Model\Quadro.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\bootstrap-theme.css" />
+    <None Include="Content\bootstrap-theme.css.map" />
+    <None Include="Content\bootstrap-theme.min.css" />
+    <None Include="Content\bootstrap.css" />
+    <None Include="Content\bootstrap.css.map" />
+    <None Include="Content\bootstrap.min.css" />
+    <None Include="Content\calendario.css" />
+    <None Include="Content\colpick.css" />
+    <None Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="fonts\glyphicons-halflings-regular.svg" />
+    <None Include="fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Content\images\animated-overlay.gif" />
+    <None Include="Content\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <None Include="Content\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <None Include="Content\images\ui-bg_flat_10_000000_40x100.png" />
+    <None Include="Content\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <None Include="Content\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <None Include="Content\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <None Include="Content\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <None Include="Content\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <None Include="Content\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <None Include="Content\images\ui-icons_222222_256x240.png" />
+    <None Include="Content\images\ui-icons_228ef1_256x240.png" />
+    <None Include="Content\images\ui-icons_ef8c08_256x240.png" />
+    <None Include="Content\images\ui-icons_ffd27a_256x240.png" />
+    <None Include="Content\images\ui-icons_ffffff_256x240.png" />
+    <None Include="Content\jquery-ui.min.css" />
+    <None Include="Content\Site.css" />
+    <None Include="Global.asax" />
+    <None Include="packages.config" />
+    <None Include="Scripts\bootstrap.js" />
+    <None Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\calendario.js" />
+    <None Include="Scripts\colpick.js" />
+    <None Include="Scripts\jquery-1.11.1.min.js" />
+    <None Include="Scripts\jquery-1.7.2-vsdoc.js" />
+    <None Include="Scripts\jquery-1.7.2.js" />
+    <None Include="Scripts\jquery-1.7.2.min.js" />
+    <None Include="Scripts\jquery-ui.min.js" />
+    <None Include="Scripts\modernizr-2.5.3.js" />
+    <None Include="Views\Home\Calendario.cshtml" />
+    <None Include="Views\Home\Contact.cshtml" />
+    <None Include="Views\Home\Equipamentos.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Matriz.cshtml" />
+    <None Include="Views\Home\MatrizDisciplina.cshtml" />
+    <None Include="Views\Home\MatrizSelecionar.cshtml" />
+    <None Include="Views\Home\Quadro.cshtml" />
+    <None Include="Views\Home\TabelaDinamica.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\web.config" />
+    <None Include="Views\_ViewStart.cshtml" />
+    <None Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="fonts" />
+    <Folder Include="Content\images" />
+    <Folder Include="Model" />
+    <Folder Include="Library" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349C5851-65DF-11DA-9384-00065B846F21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>8080</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:8080/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
