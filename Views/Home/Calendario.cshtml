@@ -158,6 +158,13 @@
 		color: #555;
 		/*background: #ffff00;*/
 	}
+
+	/* Ao passar o mouse sobre as figuras */
+	.icosel:hover{
+		background: #f00;
+		color: #fff;
+	}
+	
 </style>
 
 <script type="text/javascript">
@@ -272,8 +279,8 @@ $(function() {
 		*/
 		
 		
-		
-		var thespan = $("<span class='glyphicon'></span>");
+		// Veja o icosel!!!
+		var thespan = $("<span class='glyphicon icosel'></span>");
 	
         $.each(data, function(i) {
         	// Dia, Cor
@@ -290,6 +297,10 @@ $(function() {
     			.appendTo(lugar);
 		});
 		
+		
+		$('.icosel').on("click",function(event){
+			$(this).clone().appendTo($('#barra'));
+		});
 		
 		/*
 		$.each(cores, function(i) {
@@ -550,13 +561,17 @@ $(function() {
 			</fieldset>
 		  </div>
 		  <div id="tabs-2">
-		  	<h1>OVERFLOW:AUTO</h1>
+		  	Clique sobre uma ou mais figuras para adicionar
 		  	<div id="tabelafiguras" style="width:400px;height:200px;font-size:14pt;overflow:auto;border:solid 1px #808080;">
 		  	</div>
+		  	Clique sobre as figuras abaixo para remover
+		  	<div id="barra" style="width:400px;height:50px;font-size:14pt;background:#fff;overflow:auto;border:solid 1px #808080;">
 		  </div>
 		</div>
 	</form>
 </div>
+
+
 <style>
 
 bs-glyphicons .glyphicon-class {
@@ -818,7 +833,7 @@ word-wrap: break-word;
 
 
 <!-- http://jsfiddle.net/ambiguous/pjJGf/ -->
-/*
+<!--
 
 It might seem crazy what I'm about to say
 [ Ih mai sim creize uó-Rabau to sei ]
@@ -945,4 +960,4 @@ Because I'm happy
 Clap along if you feel like that's what you wanna do
 
 Link: http://www.vagalume.com.br/pharrell-williams/happy.html#ixzz3BPKr9mYN
-*/
+-->
